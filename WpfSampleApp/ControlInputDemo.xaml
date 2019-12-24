@@ -1,0 +1,24 @@
+﻿<Window x:Class="WpfSampleApp.ControlInputDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSampleApp"
+        mc:Ignorable="d"
+        Title="ControlInputDemo" Height="450" Width="800">
+    <Grid>
+        <DockPanel HorizontalAlignment="Left" Height="26" LastChildFill="True" Margin="10,10,0,0" VerticalAlignment="Top" Width="275">
+            <Label Content="Uncontrolled numeric textbox:" VerticalContentAlignment="Center"/>
+            <TextBox TextWrapping="Wrap" Text=""  VerticalContentAlignment="Center" MaxLines="1"/>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left" Height="26" LastChildFill="True" Margin="10,41,0,0" VerticalAlignment="Top" Width="275">
+            <Label Content="Controlled numeric textbox:" VerticalContentAlignment="Center"/>
+            <TextBox TextWrapping="Wrap" Text=""  VerticalContentAlignment="Center" MaxLines="1" PreviewTextInput="TextBox_PreviewTextInput"/>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left" Height="26" LastChildFill="True" Margin="10,72,0,0" VerticalAlignment="Top" Width="275">
+            <Label Content="Custom textbox with numeric control:" VerticalContentAlignment="Center"/>
+            <local:NumericTextBox TextWrapping="Wrap" Text=""  VerticalContentAlignment="Center" MaxLines="1" />
+        </DockPanel>
+
+    </Grid>
+</Window>

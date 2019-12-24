@@ -1,0 +1,95 @@
+﻿<Window x:Class="WpfSampleApp.DataGridDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSampleApp"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="DataGridDemo" Height="800" Width="1720">
+    <Window.Resources>
+        <local:ReportInformations x:Key="AvailableReportInformations" />
+        <CollectionViewSource x:Key="cvsAvailableReportInformations" Source="{StaticResource AvailableReportInformations}" />
+        <CollectionViewSource x:Key="cvsGroupedAvailableReportInformations" Source="{StaticResource AvailableReportInformations}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Type" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+        <ObjectDataProvider x:Key="ReportTypeEnumDataProvider" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:ReportType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition MaxWidth="5"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition MaxWidth="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="directoryInfoDatagrid">
+
+        </DataGrid>
+
+        <DataGrid Grid.Column="2" ItemsSource="{Binding Source={StaticResource cvsAvailableReportInformations}}" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridComboBoxColumn Header="Type" SelectedItemBinding="{Binding Type}" ItemsSource="{Binding Source={StaticResource ReportTypeEnumDataProvider}}"/>
+                <DataGridTextColumn Header="CreationDateTime" Binding="{Binding CreationDateTime}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="groupedGrid" Grid.Column="4" ItemsSource="{Binding Source={StaticResource cvsGroupedAvailableReportInformations}}" >
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <DataGridRowsPresenter/>
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Margin" Value="0,0,0,5" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander x:Name="MainExpander" IsExpanded="True" Background="#FF112255" BorderBrush="#FF002255" Foreground="#FFEEEEEE" BorderThickness="1,1,1,5" >
+                                            <Expander.Header>
+                                                <DockPanel>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Name}" Margin="5,0,0,0" Width="100" />
+                                                    <TextBlock FontWeight="Bold" Text="{Binding ItemCount}" />
+                                                </DockPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+
+                <!-- Style for groups under the top level. -->
+
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <DockPanel Background="LightBlue">
+                                <TextBlock Text="{Binding Name}" Foreground="Blue" Margin="30,0,0,0" Width="100" />
+                                <TextBlock Text="{Binding ItemCount}" Foreground="Blue" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="Background" Value="White" />
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+    </Grid>
+</Window>

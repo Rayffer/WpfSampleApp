@@ -1,0 +1,38 @@
+﻿<Window x:Class="WpfSampleApp.AnimationsDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSampleApp"
+        mc:Ignorable="d"
+        Title="AnimationsDemo" Height="450" Width="800">
+    <Grid x:Name="grid">
+        <Button Content="Animate Background Color" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="207" Height="28" Click="Button_Click" />
+        <Button Content="Animate Button Width" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Height="28" Width="140" Click="Button_Click_1" />
+        <Button Content="Perform Long Running Task That Blocks UI" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="28" Width="245" Click="Button_Click_2" />
+        <Button Content="Perform Long Running Task That Does Not Block UI" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="28" Width="298" Click="Button_Click_3" />
+        <Button Content="Animate Window Opacity" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Height="28" Width="140" Click="Button_Click_5" />
+        <Button Content="Animate Button ColorWith Triggers" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="28" Width="212">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty= "Width" Duration="00:00:00.2" To="400" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty= "Width" Duration="00:00:01" FillBehavior="Stop"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Window>
