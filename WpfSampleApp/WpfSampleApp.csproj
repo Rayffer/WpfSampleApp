@@ -79,6 +79,9 @@
     </Compile>
     <Compile Include="NumericTextBox.cs" />
     <Compile Include="ReportType.cs" />
+    <Compile Include="WindowResourcesDemo.xaml.cs">
+      <DependentUpon>WindowResourcesDemo.xaml</DependentUpon>
+    </Compile>
     <Page Include="AnimationsDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResourcesDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
