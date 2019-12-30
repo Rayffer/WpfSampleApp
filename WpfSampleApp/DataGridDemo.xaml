@@ -41,7 +41,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="groupedGrid" Grid.Column="4" ItemsSource="{Binding Source={StaticResource cvsGroupedAvailableReportInformations}" AutoGenerateColumns="False">
+        <DataGrid x:Name="groupedGrid" Grid.Column="4" ItemsSource="{Binding Source={StaticResource cvsGroupedAvailableReportInformations}}" AutoGenerateColumns="False">
             <DataGrid.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.Panel>

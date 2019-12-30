@@ -37,7 +37,29 @@
             </Button.Style>
         </Button>
         <Button Content="Close" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Bottom" Width="75" Height="28" Click="Button_Click_4"/>
-        <Button Content="Animate Button Rotate Transform" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" Height="28" Width="207" Click="Button_Click_6" RenderTransformOrigin="0.5,0.5">
+        <Button Content="Animate Button Rotate Transform" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" Height="28" Width="207" Click="Button_Click_6" RenderTransformOrigin="0.5,0.5" PreviewMouseDown="Label_MouseDown" PreviewMouseUp="Label_MouseUp" MouseMove="Label_MouseMove" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="0" />
+            </Button.RenderTransform>
+        </Button>
+        <StackPanel Margin="339,241,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Width="400" Height="32">
+            <StackPanel x:Name="stackPanelLabelHolder" Orientation="Horizontal" >
+                <Label Content="Stack Panel Item 1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Red" Width="Auto" Margin="2"/>
+                <Label Content="Stack Panel Item 2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="DeepSkyBlue" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Green" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Yellow" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Pink" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Magenta" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Crimson" Width="Auto" Margin="2" />
+            </StackPanel>
+            <Label Content="End of the Stack Panel Items" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="AntiqueWhite" Width="Auto" Margin="2"/>
+        </StackPanel>
+        <Button Content="Remove Item from panel in Animation Completed Event" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Height="28" Width="324" Click="Button_Click_7" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <RotateTransform Angle="0" />
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Add Items to panel" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Height="28" Width="324" Click="Button_Click_8" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <RotateTransform Angle="0" />
             </Button.RenderTransform>
