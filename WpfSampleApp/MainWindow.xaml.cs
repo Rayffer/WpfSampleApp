@@ -23,5 +23,35 @@ namespace WpfSampleApp
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AnimationsDemo demo = new AnimationsDemo();
+            demo.WindowStyle = WindowStyle.None;
+            demo.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            BindingDemo demo = new BindingDemo();
+            demo.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ControlInputDemo demo = new ControlInputDemo();
+            demo.ShowDialog();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            DataGridDemo demo = new DataGridDemo();
+            demo.ShowDialog();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            throw new Exception("Excepción lanzada que no cierra la aplicación");
+        }
     }
 }

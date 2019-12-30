@@ -4,15 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSampleApp"
-        mc:Ignorable="d"
+        mc:Ignorable="d" AllowsTransparency="True"
         Title="AnimationsDemo" Height="450" Width="800">
-    <Grid x:Name="grid">
+    <Grid x:Name="grid" >
         <Button Content="Animate Background Color" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="207" Height="28" Click="Button_Click" />
         <Button Content="Animate Button Width" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Height="28" Width="140" Click="Button_Click_1" />
         <Button Content="Perform Long Running Task That Blocks UI" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="28" Width="245" Click="Button_Click_2" />
         <Button Content="Perform Long Running Task That Does Not Block UI" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="28" Width="298" Click="Button_Click_3" />
-        <Button Content="Animate Window Opacity" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Height="28" Width="140" Click="Button_Click_5" />
-        <Button Content="Animate Button ColorWith Triggers" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="28" Width="212">
+        <Button Content="Animate Window Opacity" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Height="28" Width="153" Click="Button_Click_5" />
+        <Button Content="Animate Button Width And Color With Triggers" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="28" Width="276" Background="#FFDDDDDD">
             <Button.Style>
                 <Style>
                     <Style.Triggers>
@@ -20,6 +20,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetProperty= "Width" Duration="00:00:00.2" To="400" />
+                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="00:00:00.2" To="Aqua"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -27,12 +28,19 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetProperty= "Width" Duration="00:00:01" FillBehavior="Stop"/>
+                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="00:00:01" FillBehavior="Stop"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
+        </Button>
+        <Button Content="Close" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Bottom" Width="75" Height="28" Click="Button_Click_4"/>
+        <Button Content="Animate Button Rotate Transform" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" Height="28" Width="207" Click="Button_Click_6" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <RotateTransform Angle="0" />
+            </Button.RenderTransform>
         </Button>
     </Grid>
 </Window>

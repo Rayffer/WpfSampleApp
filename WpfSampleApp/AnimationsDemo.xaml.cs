@@ -23,7 +23,7 @@ namespace WpfSampleApp
             specimenBuilders = new Fixture();
             unblockingThread = new Thread(new ThreadStart(ThreadMethod));
             animationDuration = new Duration(TimeSpan.FromSeconds(0.5F));
-            this.Background = new SolidColorBrush(Colors.Transparent);
+            this.Background = new SolidColorBrush(Colors.LightGray);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -31,7 +31,7 @@ namespace WpfSampleApp
             var redComponent = specimenBuilders.Create<byte>();
             var greenComponent = specimenBuilders.Create<byte>();
             var blueComponent = specimenBuilders.Create<byte>();
-            var alphaComponent = specimenBuilders.Create<byte>();
+            var alphaComponent = (byte)255;
 
             var generatedColor = (Color)System.Windows.Media.ColorConverter.ConvertFromString($"#{alphaComponent.ToString("X2")}{redComponent.ToString("X2")}{greenComponent.ToString("X2")}{blueComponent.ToString("X2")}");
 
@@ -89,9 +89,29 @@ namespace WpfSampleApp
             Random random = new Random();
             var generatedOpacity = random.NextDouble();
 
-            DoubleAnimation opacityAnimation = new DoubleAnimation(generatedOpacity, animationDuration);
+
+            DoubleAnimation opacityAnimation = new DoubleAnimation(0.4 + generatedOpacity * 0.6, animationDuration);
 
             this.BeginAnimation(OpacityProperty, opacityAnimation);
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation doubleAnimation = new DoubleAnimation(0, 360, animationDuration);
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Duration = animationDuration;
+            Storyboard.SetTarget(doubleAnimation, sender as Button);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath("(UIElement.RenderTransform).(RotateTransform.Angle)"));
+
+            storyboard.Children.Add(doubleAnimation);
+
+            storyboard.Begin();
         }
     }
 }
