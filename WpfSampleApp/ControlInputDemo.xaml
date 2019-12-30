@@ -8,16 +8,12 @@
         Title="ControlInputDemo" Height="450" Width="800">
     <Grid>
         <DockPanel HorizontalAlignment="Left" Height="26" LastChildFill="True" Margin="10,10,0,0" VerticalAlignment="Top" Width="275">
-            <Label Content="Uncontrolled numeric textbox:" VerticalContentAlignment="Center"/>
+            <Label Content="Uncontrolled textbox:" VerticalContentAlignment="Center"/>
             <TextBox TextWrapping="Wrap" Text=""  VerticalContentAlignment="Center" MaxLines="1"/>
         </DockPanel>
         <DockPanel HorizontalAlignment="Left" Height="26" LastChildFill="True" Margin="10,41,0,0" VerticalAlignment="Top" Width="275">
             <Label Content="Controlled numeric textbox:" VerticalContentAlignment="Center"/>
-            <TextBox TextWrapping="Wrap" Text=""  VerticalContentAlignment="Center" MaxLines="1" PreviewTextInput="TextBox_PreviewTextInput"/>
-        </DockPanel>
-        <DockPanel HorizontalAlignment="Left" Height="26" LastChildFill="True" Margin="10,72,0,0" VerticalAlignment="Top" Width="275">
-            <Label Content="Custom textbox with numeric control:" VerticalContentAlignment="Center"/>
-            <local:NumericTextBox TextWrapping="Wrap" Text=""  VerticalContentAlignment="Center" MaxLines="1" />
+            <TextBox TextWrapping="Wrap" Text=""  VerticalContentAlignment="Center" MaxLines="1" PreviewTextInput="TextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting"/>
         </DockPanel>
 
     </Grid>

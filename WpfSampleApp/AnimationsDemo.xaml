@@ -4,15 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSampleApp"
-        mc:Ignorable="d"
+        mc:Ignorable="d" AllowsTransparency="True"
         Title="AnimationsDemo" Height="450" Width="800">
-    <Grid x:Name="grid">
+    <Grid x:Name="grid" >
         <Button Content="Animate Background Color" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="207" Height="28" Click="Button_Click" />
         <Button Content="Animate Button Width" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Height="28" Width="140" Click="Button_Click_1" />
         <Button Content="Perform Long Running Task That Blocks UI" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="28" Width="245" Click="Button_Click_2" />
         <Button Content="Perform Long Running Task That Does Not Block UI" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="28" Width="298" Click="Button_Click_3" />
-        <Button Content="Animate Window Opacity" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Height="28" Width="140" Click="Button_Click_5" />
-        <Button Content="Animate Button ColorWith Triggers" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="28" Width="212">
+        <Button Content="Animate Window Opacity" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Height="28" Width="153" Click="Button_Click_5" />
+        <Button Content="Animate Button Width And Color With Triggers" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="28" Width="276" Background="#FFDDDDDD">
             <Button.Style>
                 <Style>
                     <Style.Triggers>
@@ -20,6 +20,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetProperty= "Width" Duration="00:00:00.2" To="400" />
+                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="00:00:00.2" To="Aqua"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -27,12 +28,41 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetProperty= "Width" Duration="00:00:01" FillBehavior="Stop"/>
+                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="00:00:01" FillBehavior="Stop"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
+        </Button>
+        <Button Content="Close" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Bottom" Width="75" Height="28" Click="Button_Click_4"/>
+        <Button Content="Animate Button Rotate Transform" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" Height="28" Width="207" Click="Button_Click_6" RenderTransformOrigin="0.5,0.5" PreviewMouseDown="Label_MouseDown" PreviewMouseUp="Label_MouseUp" MouseMove="Label_MouseMove" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="0" />
+            </Button.RenderTransform>
+        </Button>
+        <StackPanel Margin="339,241,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Width="400" Height="32">
+            <StackPanel x:Name="stackPanelLabelHolder" Orientation="Horizontal" >
+                <Label Content="Stack Panel Item 1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Red" Width="Auto" Margin="2"/>
+                <Label Content="Stack Panel Item 2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="DeepSkyBlue" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Green" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Yellow" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Pink" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Magenta" Width="Auto" Margin="2" />
+                <Label Content="Stack Panel Item 7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Crimson" Width="Auto" Margin="2" />
+            </StackPanel>
+            <Label Content="End of the Stack Panel Items" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="AntiqueWhite" Width="Auto" Margin="2"/>
+        </StackPanel>
+        <Button Content="Remove Item from panel in Animation Completed Event" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Height="28" Width="324" Click="Button_Click_7" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <RotateTransform Angle="0" />
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Add Items to panel" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Height="28" Width="324" Click="Button_Click_8" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <RotateTransform Angle="0" />
+            </Button.RenderTransform>
         </Button>
     </Grid>
 </Window>

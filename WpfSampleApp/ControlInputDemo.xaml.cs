@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfSampleApp
 {
@@ -19,6 +10,8 @@ namespace WpfSampleApp
     /// </summary>
     public partial class ControlInputDemo : Window
     {
+        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+
         public ControlInputDemo()
         {
             InitializeComponent();
@@ -26,9 +19,22 @@ namespace WpfSampleApp
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!int.TryParse(e.Text, out int tempValue))
+            e.Handled = _regex.IsMatch(e.Text);
+        }
+
+        private void TextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
             {
-                e.Handled = true;
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (_regex.IsMatch(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
             }
         }
     }

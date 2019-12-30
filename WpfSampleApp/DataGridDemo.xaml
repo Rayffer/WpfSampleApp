@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfSampleApp"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="DataGridDemo" Height="800" Width="1720">
+        Title="DataGridDemo" Height="800" Width="1400">
     <Window.Resources>
         <local:ReportInformations x:Key="AvailableReportInformations" />
         <CollectionViewSource x:Key="cvsAvailableReportInformations" Source="{StaticResource AvailableReportInformations}" />
@@ -41,7 +41,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="groupedGrid" Grid.Column="4" ItemsSource="{Binding Source={StaticResource cvsGroupedAvailableReportInformations}}" >
+        <DataGrid x:Name="groupedGrid" Grid.Column="4" ItemsSource="{Binding Source={StaticResource cvsGroupedAvailableReportInformations}}" AutoGenerateColumns="False">
             <DataGrid.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.Panel>
@@ -90,6 +90,11 @@
                     <Setter Property="Background" Value="White" />
                 </Style>
             </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridComboBoxColumn Header="Type" SelectedItemBinding="{Binding Type}" ItemsSource="{Binding Source={StaticResource ReportTypeEnumDataProvider}}"/>
+                <DataGridTextColumn Header="CreationDateTime" Binding="{Binding CreationDateTime}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>
