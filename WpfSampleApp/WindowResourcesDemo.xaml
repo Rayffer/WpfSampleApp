@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfSampleApp.WindowResourcesDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSampleApp"
+        mc:Ignorable="d"
+        Title="WindowResourcesDemo" Height="450" Width="800" FontFamily="Arial">
+    <Grid>
+        <TextBlock TextWrapping="Wrap" VerticalAlignment="Top" Text="This text inherits window font
+
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae eros non quam lacinia condimentum non ut metus. Vivamus suscipit lacinia odio, sit amet dapibus ex posuere pellentesque. Fusce condimentum turpis eget magna auctor, sed posuere lorem tincidunt. Etiam iaculis sapien lacus, sit amet tincidunt sapien ornare in. Vestibulum ipsum orci, egestas a malesuada dictum, efficitur in dui. Integer consequat tempor scelerisque. Nunc porttitor risus sem, a lobortis ligula tincidunt a. Quisque in ligula pulvinar, rhoncus massa vitae, pulvinar mauris. Vivamus vestibulum sagittis est ut pulvinar. Phasellus odio nunc, ullamcorper et enim eget, posuere sollicitudin nibh. Praesent eu ornare magna. Mauris efficitur erat enim, ut sollicitudin nisi pharetra nec.
+
+Ut blandit erat purus, eget semper lectus vestibulum in. Donec massa lacus, luctus sed dui non, interdum feugiat nunc. Suspendisse vel dui aliquam, aliquet ipsum sed, dictum justo. Fusce congue massa sit amet magna accumsan, eu facilisis nisl finibus. Morbi at dui metus. Integer id diam laoreet, luctus nibh a, ornare ex. Curabitur tincidunt enim sollicitudin, accumsan nisl vitae, ornare ipsum. "/>
+        <TextBlock TextWrapping="Wrap" Text="This text uses its own font
+
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae eros non quam lacinia condimentum non ut metus. Vivamus suscipit lacinia odio, sit amet dapibus ex posuere pellentesque. Fusce condimentum turpis eget magna auctor, sed posuere lorem tincidunt. Etiam iaculis sapien lacus, sit amet tincidunt sapien ornare in. Vestibulum ipsum orci, egestas a malesuada dictum, efficitur in dui. Integer consequat tempor scelerisque. Nunc porttitor risus sem, a lobortis ligula tincidunt a. Quisque in ligula pulvinar, rhoncus massa vitae, pulvinar mauris. Vivamus vestibulum sagittis est ut pulvinar. Phasellus odio nunc, ullamcorper et enim eget, posuere sollicitudin nibh. Praesent eu ornare magna. Mauris efficitur erat enim, ut sollicitudin nisi pharetra nec.
+
+Ut blandit erat purus, eget semper lectus vestibulum in. Donec massa lacus, luctus sed dui non, interdum feugiat nunc. Suspendisse vel dui aliquam, aliquet ipsum sed, dictum justo. Fusce congue massa sit amet magna accumsan, eu facilisis nisl finibus. Morbi at dui metus. Integer id diam laoreet, luctus nibh a, ornare ex. Curabitur tincidunt enim sollicitudin, accumsan nisl vitae, ornare ipsum. " Height="138" VerticalAlignment="Top" Margin="0,133,0,0" FontFamily="Bell MT"/>
+    </Grid>
+</Window>
