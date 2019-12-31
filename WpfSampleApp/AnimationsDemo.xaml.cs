@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 
 namespace WpfSampleApp
 {
@@ -100,38 +101,6 @@ namespace WpfSampleApp
             this.Close();
         }
 
-        private bool isRotating = false;
-
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-            if (isRotating)
-            {
-                DoubleAnimation doubleAnimation = new DoubleAnimation(0, animationDuration);
-
-                Storyboard storyboard = new Storyboard();
-                storyboard.Duration = animationDuration;
-                Storyboard.SetTarget(doubleAnimation, sender as Button);
-                Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath("(UIElement.RenderTransform).(RotateTransform.Angle)"));
-                storyboard.Children.Add(doubleAnimation);
-
-                storyboard.Begin(this, HandoffBehavior.SnapshotAndReplace);
-            }
-            else
-            {
-                DoubleAnimation doubleAnimation = new DoubleAnimation(0, 360, animationDuration);
-
-                Storyboard storyboard = new Storyboard();
-                storyboard.Duration = animationDuration;
-                Storyboard.SetTarget(doubleAnimation, sender as Button);
-                Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath("(UIElement.RenderTransform).(RotateTransform.Angle)"));
-                storyboard.RepeatBehavior = RepeatBehavior.Forever;
-                storyboard.Children.Add(doubleAnimation);
-
-                storyboard.Begin(this, HandoffBehavior.SnapshotAndReplace);
-            }
-            isRotating = !isRotating; 
-        }
-
         private bool animationFinished = true;
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
@@ -139,7 +108,7 @@ namespace WpfSampleApp
             if (animationFinished && stackPanelLabelHolder.Children.Count > 0)
             {
                 animationFinished = false;
-                Label firstControl = stackPanelLabelHolder.Children[0] as Label;
+                var firstControl = stackPanelLabelHolder.Children[0] as FrameworkElement;
                 firstControl.Width = firstControl.ActualWidth;
 
                 DoubleAnimation doubleAnimationWithRemoval = new DoubleAnimation(0, animationDuration);
@@ -162,6 +131,7 @@ namespace WpfSampleApp
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
             stackPanelLabelHolder.Children.Clear();
+
             stackPanelLabelHolder.Children.Add(CreateLabel("Stack Panel Item 1", Brushes.Red));
             stackPanelLabelHolder.Children.Add(CreateLabel("Stack Panel Item 2", Brushes.DeepSkyBlue));
             stackPanelLabelHolder.Children.Add(CreateLabel("Stack Panel Item 3", Brushes.Green));
@@ -186,7 +156,7 @@ namespace WpfSampleApp
                 DoubleAnimation doubleAnimation = new DoubleAnimation(MeasureString(createdLabel).Width, animationDuration);
                 doubleAnimation.AccelerationRatio = 1F;
 
-                ThicknessAnimation thicknessAnimation = new ThicknessAnimation(new Thickness(0), new Thickness(2), animationDuration);
+                ThicknessAnimation thicknessAnimation = new ThicknessAnimation(new Thickness(0, 2, 0, 2), new Thickness(2), animationDuration);
 
                 createdLabel.BeginAnimation(WidthProperty, doubleAnimation);
                 createdLabel.BeginAnimation(MarginProperty, thicknessAnimation);
@@ -211,15 +181,11 @@ namespace WpfSampleApp
                 formattedText.Height + candidate.Padding.Top + candidate.Padding.Bottom);
         }
 
-        bool isDragging = false;
-        private void Label_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            isDragging = true;
-        }
+        private bool isDragging = false;
 
-        private void Label_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            isDragging = false;
+            isDragging = !isDragging;
         }
 
         private void Label_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -228,8 +194,40 @@ namespace WpfSampleApp
             {
                 var button = (sender as Button);
                 System.Windows.Point position = e.GetPosition(this);
-                button.LayoutTransform = new TranslateTransform(position.X, position.Y);
+                button.Margin = new Thickness(position.X - button.Width / 2, position.Y - button.Height / 2, 0, 0);
             }
+        }
+
+        private bool isRotating = false;
+
+        private void Button_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (isRotating)
+            {
+                DoubleAnimation doubleAnimation = new DoubleAnimation(0, animationDuration);
+
+                Storyboard storyboard = new Storyboard();
+                storyboard.Duration = animationDuration;
+                Storyboard.SetTarget(doubleAnimation, sender as Button);
+                Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath("(UIElement.RenderTransform).(RotateTransform.Angle)"));
+                storyboard.Children.Add(doubleAnimation);
+
+                storyboard.Begin(this, HandoffBehavior.SnapshotAndReplace);
+            }
+            else
+            {
+                DoubleAnimation doubleAnimation = new DoubleAnimation(0, 360, new Duration(TimeSpan.FromSeconds(1.5)));
+
+                Storyboard storyboard = new Storyboard();
+                storyboard.Duration = new Duration(TimeSpan.FromSeconds(1.5));
+                Storyboard.SetTarget(doubleAnimation, sender as Button);
+                Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath("(UIElement.RenderTransform).(RotateTransform.Angle)"));
+                storyboard.RepeatBehavior = RepeatBehavior.Forever;
+                storyboard.Children.Add(doubleAnimation);
+
+                storyboard.Begin(this, HandoffBehavior.SnapshotAndReplace);
+            }
+            isRotating = !isRotating;
         }
     }
 }
