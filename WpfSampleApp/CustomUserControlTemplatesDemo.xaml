@@ -1,0 +1,78 @@
+﻿<Window x:Class="WpfSampleApp.CustomUserControlTemplatesDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSampleApp"
+        mc:Ignorable="d"
+        Title="CustomUserControlTemplatesDemo" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition MaxWidth="5" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+            <StackPanel>
+                <Button Height="100" Width="500" Content="Example" />
+                <Button Height="100" Content="Example" />
+                <Button Height="100" Content="Example" />
+                <Button Height="100" Content="Example" />
+                <Button Height="100" Content="Example" />
+                <Button Height="100" Content="Example" />
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Visible">
+            <ScrollViewer.Style>
+                <Style TargetType="{x:Type ScrollViewer}">
+                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                <Grid Background="#FF400000">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"/>
+                                        <RowDefinition  />
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,1,1">
+                                        <Border.BorderBrush>
+                                            <SolidColorBrush Color="#FF800000" />
+                                        </Border.BorderBrush>
+                                        <ScrollContentPresenter />
+                                    </Border>
+                                    <ScrollBar x:Name="PART_VerticalScrollBar"
+                                               Value="{TemplateBinding VerticalOffset}"
+                                               Maximum="{TemplateBinding ScrollableHeight}"
+                                               ViewportSize="{TemplateBinding ViewportHeight}"
+                                               Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                               Grid.Column="1"
+                                               Grid.Row="1">
+                                    </ScrollBar>
+                                    <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                               Orientation="Horizontal"
+                                               Grid.Row="0"
+                                               Value="{TemplateBinding HorizontalOffset}"
+                                               Maximum="{TemplateBinding ScrollableWidth}"
+                                               ViewportSize="{TemplateBinding ViewportWidth}"
+                                               Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ScrollViewer.Style>
+            <StackPanel>
+                <Button Height="100" Width="500" Content="Example" />
+                <Button Height="100" Content="Example" />
+                <Button Height="100" Content="Example" />
+                <Button Height="100" Content="Example" />
+                <Button Height="100" Content="Example" />
+                <Button Height="100" Content="Example" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

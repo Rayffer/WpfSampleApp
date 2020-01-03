@@ -53,5 +53,17 @@ namespace WpfSampleApp
         {
             throw new Exception("Excepción lanzada que no cierra la aplicación");
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            WindowResourcesDemo windowResourcesDemo = new WindowResourcesDemo();
+            windowResourcesDemo.ShowDialog();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            CustomUserControlTemplatesDemo customUserControlTemplatesDemo = new CustomUserControlTemplatesDemo();
+            customUserControlTemplatesDemo.ShowDialog();
+        }
     }
 }

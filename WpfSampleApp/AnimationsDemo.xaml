@@ -59,12 +59,12 @@
             </StackPanel>
             <Label Content="End of the Stack Panel Items" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="AntiqueWhite" Width="Auto" Margin="2"/>
         </StackPanel>
-        <Button Content="Remove Item from panel in Animation Completed Event" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Height="28" Width="324" Click="Button_Click_7" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="deleteItemFromPanelButton" Content="Remove Item from panel in Animation Completed Event" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Height="28" Width="324" Click="Button_Click_7" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <RotateTransform Angle="0" />
             </Button.RenderTransform>
         </Button>
-        <Button Content="Add Items to panel" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Height="28" Width="324" Click="Button_Click_8" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="addItemsToPanelButton" Content="Add Items to panel" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Height="28" Width="324" Click="Button_Click_8" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <RotateTransform Angle="0" />
             </Button.RenderTransform>

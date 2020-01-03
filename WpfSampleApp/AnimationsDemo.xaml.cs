@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace WpfSampleApp
 {
@@ -55,7 +54,7 @@ namespace WpfSampleApp
             Thread.Sleep(5000);
 
             var fromColor = Colors.LimeGreen;
-            var toColor = Colors.Transparent;
+            var toColor = (Background as SolidColorBrush)?.Color ?? SystemColors.WindowBrush.Color;
 
             ColorAnimation colorAnimation = new ColorAnimation(fromColor, toColor, animationDuration);
 
@@ -78,7 +77,7 @@ namespace WpfSampleApp
             Dispatcher.Invoke(() =>
             {
                 var fromColor = Colors.LimeGreen;
-                var toColor = Colors.Transparent;
+                var toColor = (Background as SolidColorBrush)?.Color ?? SystemColors.WindowBrush.Color;
 
                 ColorAnimation colorAnimation = new ColorAnimation(fromColor, toColor, animationDuration);
 
@@ -101,30 +100,27 @@ namespace WpfSampleApp
             this.Close();
         }
 
-        private bool animationFinished = true;
-
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-            if (animationFinished && stackPanelLabelHolder.Children.Count > 0)
-            {
-                animationFinished = false;
-                var firstControl = stackPanelLabelHolder.Children[0] as FrameworkElement;
-                firstControl.Width = firstControl.ActualWidth;
+            var firstControl = stackPanelLabelHolder.Children[0] as FrameworkElement;
+            firstControl.Width = firstControl.ActualWidth;
 
-                DoubleAnimation doubleAnimationWithRemoval = new DoubleAnimation(0, animationDuration);
-                doubleAnimationWithRemoval.Completed += DoubleAnimation_Completed;
-                doubleAnimationWithRemoval.AccelerationRatio = 1F;
+            DoubleAnimation doubleAnimationWithRemoval = new DoubleAnimation(0, animationDuration);
+            doubleAnimationWithRemoval.Completed += DoubleAnimation_Completed;
+            doubleAnimationWithRemoval.AccelerationRatio = 1F;
 
-                ThicknessAnimation thicknessAnimation = new ThicknessAnimation(new Thickness(0, firstControl.Margin.Top, 0, firstControl.Margin.Bottom), animationDuration);
+            ThicknessAnimation thicknessAnimation = new ThicknessAnimation(new Thickness(0, firstControl.Margin.Top, 0, firstControl.Margin.Bottom), animationDuration);
 
-                firstControl.BeginAnimation(MarginProperty, thicknessAnimation);
-                firstControl.BeginAnimation(WidthProperty, doubleAnimationWithRemoval);
-            }
+            firstControl.BeginAnimation(MarginProperty, thicknessAnimation);
+            firstControl.BeginAnimation(WidthProperty, doubleAnimationWithRemoval);
+
+            addItemsToPanelButton.IsEnabled = deleteItemFromPanelButton.IsEnabled = false;
         }
 
         private void DoubleAnimation_Completed(object sender, EventArgs e)
         {
-            animationFinished = true;
+            DependencyObject target = Storyboard.GetTarget(((sender as AnimationClock).Timeline as AnimationTimeline));
+            addItemsToPanelButton.IsEnabled = deleteItemFromPanelButton.IsEnabled= true;
             stackPanelLabelHolder.Children.Remove(stackPanelLabelHolder.Children[0]);
         }
 

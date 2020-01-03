@@ -5,19 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSampleApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="232.112" Width="367.104">
+        Title="MainWindow" Height="Auto" Width="Auto">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="*" MaxHeight="40" />
+            <RowDefinition Height="*" MaxHeight="40"/>
+            <RowDefinition Height="*" MaxHeight="40"/>
+            <RowDefinition Height="*" MaxHeight="40"/>
+            <RowDefinition Height="*" MaxHeight="40"/>
+            <RowDefinition Height="*" MaxHeight="40"/>
+            <RowDefinition Height="*" MaxHeight="40"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Content="Open DataGrid demo" Margin="5" Click="Button_Click_3" />
         <Button Grid.Row="1" Content="Open Control Input Demo" Margin="5" Click="Button_Click_2" />
         <Button Grid.Row="2" Content="Open Binding Demo" Margin="5" Click="Button_Click_1" />
         <Button Grid.Row="3" Content="Open Animations Demo" Margin="5" Click="Button_Click" />
-        <Button Grid.Row="4" Content="Throw Exception" Margin="5" Click="Button_Click_4" />
+        <Button Grid.Row="4" Content="Open Window Resources Demo" Margin="5" Click="Button_Click_5" />
+        <Button Grid.Row="5" Content="Open Custom Control Templates Demo" Margin="5" Click="Button_Click_6" />
+        <Button Grid.Row="6" Content="Throw Exception" Margin="5" Click="Button_Click_4" />
     </Grid>
 </Window>

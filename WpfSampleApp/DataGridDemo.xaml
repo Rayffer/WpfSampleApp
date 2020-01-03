@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfSampleApp"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="DataGridDemo" Height="800" Width="1400">
+        Title="DataGridDemo" Height="500" Width="1000">
     <Window.Resources>
         <local:ReportInformations x:Key="AvailableReportInformations" />
         <CollectionViewSource x:Key="cvsAvailableReportInformations" Source="{StaticResource AvailableReportInformations}" />
